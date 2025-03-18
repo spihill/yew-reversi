@@ -1,7 +1,5 @@
-use crate::{
-    components::reversi_cell::ReversiCell, game_logic::types::GameStatus,
-    game_state_context::GameStateContext,
-};
+use crate::{components::reversi_cell::ReversiCell, game_state_context::GameStateContext};
+use game_logic::types::GameStatus;
 use yew::prelude::*;
 
 #[derive(Properties, PartialEq)]
@@ -41,18 +39,18 @@ impl Component for ReversiTable {
     }
 
     fn view(&self, _ctx: &Context<Self>) -> Html {
-        let valid_moves = self.game_state.valid_moves();
+        let valid_moves = self.game_state.inner.valid_moves();
         html! {
             <table style="border-collapse: collapse;">
                 <tbody>
-                    { for self.game_state.board.as_array().iter().enumerate().map(|(y, row)| {
+                    { for self.game_state.inner.board.as_array().iter().enumerate().map(|(y, row)| {
                             html! {
                                 <tr key={y}>
                                     {
                                         for row.iter().enumerate().map(|(x, &cell)| {
                                             html! {
                                                 <ReversiCell key={x} color={cell} x={x as u32} y={y as u32} is_valid_move={
-                                                    self.game_state.status == GameStatus::InProgress &&  valid_moves.iter().any(|&coord| coord == (x as u32, y as u32).into())
+                                                    self.game_state.inner.status == GameStatus::InProgress &&  valid_moves.iter().any(|&coord| coord == (x as u32, y as u32).into())
                                                 }/>
                                             }
                                         })

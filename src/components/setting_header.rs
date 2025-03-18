@@ -1,9 +1,7 @@
 use yew::prelude::*;
 
-use crate::{
-    game_logic::types::Color,
-    game_state_context::{BoardAction, GameStateContext},
-};
+use crate::game_state_context::{BoardAction, GameStateContext};
+use game_logic::types::Color;
 
 #[derive(PartialEq, Clone, Copy)]
 pub enum TurnColor {

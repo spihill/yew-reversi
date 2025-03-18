@@ -21,7 +21,7 @@ jobs:
 
       - run: rustup target add wasm32-unknown-unknown
       - run: cargo install trunk
-      - run: trunk build --release --public-url /yew-reversi
+      - run: RUSTFLAGS="--cfg getrandom_backend=\"wasm_js\"" trunk build --release --public-url /yew-reversi
 
       - run: cp -r ./dist/ ./public/
       - uses: peaceiris/actions-gh-pages@v3

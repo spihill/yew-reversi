@@ -1,4 +1,4 @@
-use rand::seq::SliceRandom;
+use rand::seq::IndexedRandom;
 
 use super::{
     ai_agent::AiAgent,
@@ -23,7 +23,7 @@ impl AiAgent for RandomAgent {
     }
 
     fn next_move(&self, board: &Board) -> Coordinate {
-        let mut rng = rand::thread_rng();
+        let mut rng = rand::rng();
         *board.valid_moves(self.color).choose(&mut rng).unwrap()
     }
 

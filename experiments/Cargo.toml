@@ -1,0 +1,8 @@
+[package]
+name = "experiments"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+game_logic = { path = '../game_logic' }
+rand = "0.9.0"

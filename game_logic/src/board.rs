@@ -8,8 +8,8 @@ pub struct Board {
     black: BitBoard,
 }
 
-impl Board {
-    pub fn new() -> Self {
+impl Default for Board {
+    fn default() -> Self {
         let mut board = Board { white: 0, black: 0 };
         // 初期配置
         board.set_piece((3, 3).into(), Color::White);
@@ -18,11 +18,28 @@ impl Board {
         board.set_piece((4, 4).into(), Color::White);
         board
     }
+}
+
+impl Board {
+    pub fn new() -> Self {
+        Self::default()
+    }
 
     fn set_piece(&mut self, coordinate: Coordinate, color: Color) {
         match color {
             Color::Black => self.black |= coordinate.to_bit(),
             Color::White => self.white |= coordinate.to_bit(),
+        }
+    }
+
+    pub fn get_piece(&self, coordinate: &Coordinate) -> Option<Color> {
+        let bit = coordinate.to_bit();
+        if self.black & bit != 0 {
+            Some(Color::Black)
+        } else if self.white & bit != 0 {
+            Some(Color::White)
+        } else {
+            None
         }
     }
 

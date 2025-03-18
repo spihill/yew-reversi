@@ -1,7 +1,4 @@
-#![forbid(unsafe_code)]
-
 mod components;
-mod game_logic;
 mod game_state_context;
 use components::{reversi_table::ReversiTable, setting_header::SettingHeader};
 use game_state_context::GameStateProvider;

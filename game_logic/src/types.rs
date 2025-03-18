@@ -16,6 +16,7 @@ impl Color {
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub enum AgentType {
     Random,
+    MonteCarlo,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
@@ -34,6 +35,12 @@ pub struct Coordinate {
 impl Coordinate {
     pub fn to_bit(self) -> BitBoard {
         1 << (self.y * 8 + self.x)
+    }
+    pub fn right_rotate(self) -> Self {
+        Coordinate {
+            x: 7 - self.y,
+            y: self.x,
+        }
     }
 }
 

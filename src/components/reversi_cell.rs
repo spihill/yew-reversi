@@ -1,9 +1,8 @@
 use yew::prelude::*;
 
-use crate::{
-    game_logic::types::Color,
-    game_state_context::{BoardAction, GameStateContext},
-};
+use game_logic::types::Color;
+
+use crate::game_state_context::{BoardAction, GameStateContext};
 
 #[derive(Properties, PartialEq)]
 pub struct ReversiCellProps {

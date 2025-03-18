@@ -1,12 +1,8 @@
-use gloo_console::log;
-
-use crate::game_logic::{
+use crate::{
     ai_agent::AiAgent,
     board::Board,
-    types::{Color, Coordinate, GameStatus},
+    types::{AgentType, Color, Coordinate, GameStatus},
 };
-
-use super::types::AgentType;
 
 #[derive(Debug)]
 pub struct GameState {
@@ -24,6 +20,12 @@ impl PartialEq for GameState {
             && self.turn == other.turn
             && self.status == other.status
             && self.agent_type() == other.agent_type()
+    }
+}
+
+impl Default for GameState {
+    fn default() -> Self {
+        GameState::new()
     }
 }
 
@@ -54,7 +56,6 @@ impl GameState {
             let coord = agent.next_move(&self.board);
             self.make_move(coord)
         } else {
-            log!("No AI agent set");
             Err("No AI agent set".into())
         }
     }
